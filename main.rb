@@ -46,22 +46,37 @@ def convert_base(num_string, old_base, new_base)
 end
 
 def main
-  puts "Enter the base of the input-number:"
-  base1 = gets.chomp
+  base1 = 10
+  base2 = 10
+  num = nil
 
-  puts "Enter the base of the output-number:"
-  base2 = gets.chomp
+  while true
+    puts "Number-base Converter"
+    puts "(I) Input-base: #{base1}; (O) Output-base #{base2}; (Q) Quit"
 
-  puts "Enter the number you want to convert:"
-  num = gets.chomp
+    input = gets.chomp
+    if input.downcase == "q"
+      return
+    elsif input.downcase == "i"
+      puts "Enter a new integer base from 1 - 62"
+      base1 = gets.chomp.to_i
+      puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    elsif input.downcase == "o"
+      puts "Enter a new integer base from 1 - 62"
+      base2 = gets.chomp.to_i
+      puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    else
+      num = input
+      converted = convert_base(num, base1, base2)
+      puts "base(#{base1}) #{num} is #{converted} in base(#{base2})"
+      puts "\n\nPress any key to continue"
+      gets
+      puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    end   
+  end
 
   converted_number = convert_base(num, base1.to_i, base2.to_i)
   puts "base(#{base1}): #{num} is #{converted_number} in base(#{base2})"
 end
 
-while true
-  main
-  
-  puts "press \"q\" to quit"
-  break if gets.chomp.downcase == "q"
-end
+main
