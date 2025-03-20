@@ -1,3 +1,7 @@
+# Omfattande Problem
+
+Syftet med det här projektet är att lösa och redovisa ett "omfattande problem" i gymnasiekursen Matematik 5.
+
 # Omvandla tal i olika talbaser
 > OMRÅDEN: Talteori, Kongruens NIVÅ: E-A TYP: Öppen
 
@@ -11,3 +15,7 @@ För att denna uppgift ska komma upp i C/A-nivå behöver du förutom ovanståen
 - Visa din matematiska förmåga genom att inte använda för många inbyggda funktioner.
 - Välja någon ytterligare funktionalitet i programmet, tex att kunna hantera decimaltal.
 - Tänka extra mycket på i din redovisning att visa den matematiska förståelse av programmet.
+
+## Lösning
+
+
