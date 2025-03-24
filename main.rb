@@ -1,7 +1,7 @@
 # Convert a character to a number
 # 0-9 -> 0-9
 # A-Z -> 10-35
-# a-z -> 36-61
+# a-z -> 36-62
 def char_to_num(char) 
   ascii = char.ord
 
@@ -20,7 +20,7 @@ def num_to_char(num)
   return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"[num]
 end
 
-def convert_base(num_string, old_base, new_base, max_decimal_places)
+def string_to_num(num_string, base)
   if num_string[0] == "."
     num_string = "0" + num_string 
   end
@@ -29,21 +29,25 @@ def convert_base(num_string, old_base, new_base, max_decimal_places)
   integer_string = split_num[0]
   integer = 0
   integer_string.each_char do |char|
-    integer = integer * old_base + char_to_num(char)
+    integer = integer * base + char_to_num(char)
   end
 
   decimal = 0.0
   if split_num[1]
     split_num[1].reverse.each_char do |char|
-      decimal = decimal / old_base + char_to_num(char)
+      decimal = decimal / base + char_to_num(char)
     end
-    decimal /= old_base
+    decimal /= base
   end
 
-  num = integer += decimal
+  return integer += decimal
+end
+
+def convert_base(num_string, old_base, new_base, max_decimal_places)
+  num = string_to_num(num_string, old_base)
 
   integer_length = 0
-  while new_base ** integer_length < integer
+  while new_base ** integer_length < num
     integer_length += 1
   end
 
@@ -76,7 +80,7 @@ def convert_base(num_string, old_base, new_base, max_decimal_places)
 
   result = ""
   i = 0
-  while i < (num_array.length - 1) || i <= integer_length
+  while i < num_array.length || i <= integer_length
     if num_array.length > integer_length && i == integer_length
       result += num_to_char(num_array[i]) + "."
     elsif i >= (num_array.length - 1)
