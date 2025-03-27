@@ -94,20 +94,16 @@ Det första som görs är att strängen som matas in konverteras till en siffra 
     end
     ```
 3. Till sist sammanläggs de beräknade heltalet och decimaltalet till ett tal som sedan kan omvandlas.
+   ```ruby
+   num = integer + decimal
+   ```
 
 #### Beräkna den nya siffran
 
 Efter att talet som ska omvandlas har tagits fram kan det börja omvandlas.
 
 1. Det första steget är att beräkna hur många heltalskaraktärer som det nya talet som mest behöver för att representera talet som ska omvandlas. Det kan tas fram genom olikheten: 
-    <div>
-    <code>
-    ny-bas<sup>n</sup>
-    &ge;
-    tal-som-ska-omvandlas
-    </code>
-    </div>
-
+    $nyBas^n &ge; talSomSkaOmvandlas$
     > *Antalet decimaltalskaraktärer är bestämt av precisionen som bestäms av användaren.*
 
 2. Sedan itererar programmet från den högsta till den lägsta positionen i det nya talet (plus en till för att kunna avgöra om den sista siffran behöver avrundas upp eller inte).
