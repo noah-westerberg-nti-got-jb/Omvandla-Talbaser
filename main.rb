@@ -29,15 +29,17 @@ def string_to_num(num_string, base)
   integer_string = split_num[0]
   integer = 0
   integer_string.each_char do |char|
-    integer = integer * base + char_to_num(char)
+    integer *= base
+    integer += char_to_num(char)
   end
 
+  decimal_string = split_num[1]
   decimal = 0.0
-  if split_num[1]
-    split_num[1].reverse.each_char do |char|
-      decimal = decimal / base + char_to_num(char)
+  if decimal_string
+    decimal_string.reverse.each_char do |char|
+      decimal += char_to_num(char)
+      decimal /= base
     end
-    decimal /= base
   end
 
   return integer += decimal
@@ -66,15 +68,15 @@ def convert_base(num_string, old_base, new_base, max_decimal_places)
     num_array[-1] = 0
   end
 
+
   i = 0
   while i < num_array.length
     if num_array[i] >= new_base
       num_array[i-1] += 1
-      num_array[i] = 0
+      num_array[i] = num_array[i] - new_base
       i -= 1
       next
     end
-
     i += 1
   end
 
@@ -108,21 +110,21 @@ def main
 
   while true
     puts "Number-base Converter"
-    puts "(I) Input base: #{base1}; (O) Output base: #{base2}; (P) Precission: #{precission}; (Q) Quit"
+    puts "(I) Input base: #{base1}; (O) Output base: #{base2}; (P) Precision: #{precission}; (Q) Quit"
 
     input = gets.chomp
     if input.downcase == ":q"
       return
     elsif input.downcase == ":i"
-      puts "Enter a new integer base from 1 - 62"
+      puts "Enter a new integer base from 2 - 62"
       base1 = gets.chomp.to_i
       puts "\n\n"
     elsif input.downcase == ":o"
-      puts "Enter a new integer base from 1 - 62"
+      puts "Enter a new integer base from 2 - 62"
       base2 = gets.chomp.to_i
       puts "\n\n"
     elsif input.downcase == ":p"
-      puts "Enter the precission (numbers after the decimal point)"
+      puts "Enter the precision (numbers after the decimal point)"
       precission = gets.chomp.to_i
       puts "\n\n"
     elsif input != ""
